@@ -9,6 +9,8 @@ const url = "https://course-api.com/react-tabs-project";
 const App = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeId, setActiveId] = useState("recAGJfiU4CeaV0HL");
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     fetchJobs();
@@ -26,14 +28,25 @@ const App = () => {
       setIsLoading(false);
     }
   };
+
+  const companies = jobs.map((job) => job.company);
   return (
     <main>
       {isLoading ? (
         <Loader />
       ) : (
         <Jobs>
-          <JobsList />
-          <JobData />
+          <JobsList>
+            {companies.map((company) => (
+              <p
+                className={isActive ? "active-tag company-tag" : "company-tag"}
+                key={company}
+              >
+                {company}
+              </p>
+            ))}
+          </JobsList>
+          <JobData activeJob={jobs.activeId} />
         </Jobs>
       )}
     </main>

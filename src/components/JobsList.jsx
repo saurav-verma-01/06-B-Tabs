@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
-const JobsList = () => {
-  return <aside className="job-list">JobsList</aside>;
+const JobsList = ({ jobs, children }) => {
+  return <aside className="job-list">{children}</aside>;
 };
 
 export default JobsList;
