@@ -9,8 +9,7 @@ const url = "https://course-api.com/react-tabs-project";
 const App = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeId, setActiveId] = useState("recAGJfiU4CeaV0HL");
-  const [isActive, setIsActive] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     fetchJobs();
@@ -37,16 +36,23 @@ const App = () => {
       ) : (
         <Jobs>
           <JobsList>
-            {companies.map((company) => (
-              <p
-                className={isActive ? "active-tag company-tag" : "company-tag"}
-                key={company}
+            {jobs.map((job, index) => (
+              <button
+                className={
+                  activeIndex === index
+                    ? "active-tag company-tag"
+                    : "company-tag"
+                }
+                key={job.company}
+                onClick={() => setActiveIndex(index)}
               >
-                {company}
-              </p>
+                {" "}
+                {/* "active-tag company-tag" */}
+                {job.company}
+              </button>
             ))}
           </JobsList>
-          <JobData activeJob={jobs.activeId} />
+          <JobData activeJob={jobs[activeIndex]} />
         </Jobs>
       )}
     </main>

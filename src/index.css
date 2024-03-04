@@ -9,6 +9,10 @@
 ul {
   list-style-type: none;
 }
+button {
+  background-color: transparent;
+  border: none;
+}
 main {
   display: flex;
   align-items: center;
@@ -69,10 +73,17 @@ main {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.0625rem;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+.company-tag:hover {
+  color: #14b8a6;
+  font-weight: bold;
 }
 .active-tag {
   color: #14b8a6;
   position: relative;
+  font-weight: bold;
 }
 
 .active-tag::before {
